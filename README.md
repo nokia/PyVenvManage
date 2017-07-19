@@ -1,7 +1,7 @@
-#PyVenvManage
+# PyVenvManage
 
 
-##Introduction
+## Introduction
 
 **PyVenvManage** is a plugin for managing the Python interpreter of Pycharm Projects.
 
@@ -11,15 +11,15 @@ is easily done with `tox`, but configuring the project in Pycharm is painful.
 
 With PyVenvManage the selection and setup of the venv is a few clicks without dialog boxes.
 
-##Features
+## Features
 
 - Popup menu item to set the project interpreter
 - Icon provider to indicate virtual environments in the project view
 
-##Install from the Official PyCharm repository
+## Install from the Official PyCharm repository
 
 Coming soon.
 
-##Usage
+## Usage
 
 ![usage video](anim.gif?raw=true)
