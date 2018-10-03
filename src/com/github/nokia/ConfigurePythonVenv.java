@@ -11,29 +11,27 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.projectRoots.Sdk;
-import com.intellij.openapi.projectRoots.impl.SdkConfigurationUtil;
 import com.intellij.openapi.ui.MessageType;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.jetbrains.python.configuration.PyConfigurableInterpreterList;
 import com.jetbrains.python.sdk.PythonSdkType;
 
-import java.text.MessageFormat;
 import java.util.Collection;
 
 /**
  * Configures the selected directory as the virtual environment for the containing project.
  */
-public class ConfigurePythonVenv extends AnAction {
+public abstract class ConfigurePythonVenv extends AnAction {
 
     @Override
     public void actionPerformed(AnActionEvent e) {
-        Project project = e.getData(CommonDataKeys.PROJECT);
+        final Project project = e.getData(CommonDataKeys.PROJECT);
 
         if (project == null) {
             return;
         }
 
-        VirtualFile file = e.getData(CommonDataKeys.VIRTUAL_FILE);
+        final VirtualFile file = e.getData(CommonDataKeys.VIRTUAL_FILE);
 
         if (file == null || !file.isDirectory()) {
             return;
@@ -42,20 +40,15 @@ public class ConfigurePythonVenv extends AnAction {
         final String pythonExecutable = PythonSdkType.getPythonExecutable(file.getPath());
 
         if (pythonExecutable != null) {
-            final PyConfigurableInterpreterList interpreterList = PyConfigurableInterpreterList.getInstance(project);
-            Collection<Sdk> sdks = interpreterList.getModel().getProjectSdks().values();
-            Sdk s = findExistingSdkForExecutable(pythonExecutable, sdks);
-
-            if (s == null) {
-                s = SdkConfigurationUtil.createAndAddSDK(pythonExecutable, PythonSdkType.getInstance());
-            }
-
-            SdkConfigurationUtil.setDirectoryProjectSdk(project, s);
-            showNotification(project, s);
+            setInterpreter(project, file, pythonExecutable);
         }
     }
 
-    private Sdk findExistingSdkForExecutable(String pythonExecutablePath, Collection<Sdk> sdks) {
+    abstract void setInterpreter(Project project, VirtualFile file, String pythonExecutable);
+
+    Sdk findExistingSdkForExecutable(String pythonExecutablePath, Project project) {
+        final PyConfigurableInterpreterList interpreterList = PyConfigurableInterpreterList.getInstance(project);
+        Collection<Sdk> sdks = interpreterList.getModel().getProjectSdks().values();
         for (Sdk sdk : sdks) {
             if (pythonExecutablePath.equals(sdk.getHomePath())) {
                 return sdk;
@@ -64,32 +57,33 @@ public class ConfigurePythonVenv extends AnAction {
         return null;
     }
 
-    private void showNotification(Project project, Sdk s) {
+    void showNotification(Project project, String message) {
         NotificationGroup notificationGroup = NotificationGroup.balloonGroup("SDK changed notification");
-        String message = MessageFormat.format("Updated SDK for project {0} to: {1}", project, s);
         Notification notification = notificationGroup.createNotification(message, MessageType.INFO);
         notification.notify(project);
     }
 
-    @Override
-    public void update(AnActionEvent e) {
+    boolean isEventOnVenvDir(AnActionEvent e) {
         VirtualFile file = e.getData(CommonDataKeys.VIRTUAL_FILE);
 
         if (file == null) {
-            return;
+            return false;
         }
 
         if (file.isDirectory()) {
 
             if (PythonSdkType.getPythonExecutable(file.getPath()) != null) {
                 e.getPresentation().setEnabledAndVisible(true);
-                return;
+                return true;
             }
-
         }
 
-        e.getPresentation().setEnabledAndVisible(false);
+        return false;
     }
 
+    @Override
+    public boolean isDumbAware() {
+        return false;
+    }
 
 }

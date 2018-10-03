@@ -40,9 +40,17 @@ With PyVenvManage the selection and setup of the venv is significantly simpler w
 
   <actions>
     <action
-            id="VenvConfigPlugin.com.github.nokia.ConfigurePythonVenv"
-            class="com.github.nokia.ConfigurePythonVenv"
+            id="VenvConfigPlugin.com.github.nokia.ConfigureProjectPythonVenv"
+            class="com.github.nokia.ConfigureProjectPythonVenv"
             text="Set project venv"
+            description="Configures this directory to be the venv for the project"
+            icon="PyVenvManageIcons.CONFIGRE_VENV">
+        <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+    <action
+            id="VenvConfigPlugin.com.github.nokia.ConfigureModulePythonVenv"
+            class="com.github.nokia.ConfigureModulePythonVenv"
+            text="Set module venv for %s"
             description="Configures this directory to be the venv for the project"
             icon="PyVenvManageIcons.CONFIGRE_VENV">
       <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
