@@ -38,7 +38,6 @@ public abstract class ConfigurePythonVenv extends AnAction {
         }
 
         final String pythonExecutable = PythonSdkType.getPythonExecutable(file.getPath());
-
         if (pythonExecutable != null) {
             setInterpreter(project, file, pythonExecutable);
         }

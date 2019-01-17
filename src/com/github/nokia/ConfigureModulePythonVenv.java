@@ -22,6 +22,7 @@ public class ConfigureModulePythonVenv extends ConfigurePythonVenv {
         if (sdk == null) {
             sdk = SdkConfigurationUtil.createAndAddSDK(pythonExecutable, PythonSdkType.getInstance());
         }
+        PythonSdkType.getInstance().setupSdkPaths(sdk);
 
         Module module = ProjectFileIndex.SERVICE.getInstance(project).getModuleForFile(file, false);
 
