@@ -47,6 +47,9 @@ public abstract class ConfigurePythonVenv extends AnAction {
 
     Sdk findExistingSdkForExecutable(String pythonExecutablePath, Project project) {
         final PyConfigurableInterpreterList interpreterList = PyConfigurableInterpreterList.getInstance(project);
+        if (interpreterList == null) {
+            return null;
+        }
         Collection<Sdk> sdks = interpreterList.getModel().getProjectSdks().values();
         for (Sdk sdk : sdks) {
             if (pythonExecutablePath.equals(sdk.getHomePath())) {

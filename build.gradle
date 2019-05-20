@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij' version '0.4.8'
+}
+
+group 'com.github.nokia'
+version '1.2'
+
+sourceCompatibility = 1.8
+
+ext {
+    // https://plugins.jetbrains.com/plugin/7322-python-community-edition/versions
+    pythonCoreVersion = "2019.1.191.6707.7"
+}
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs("${gradle.gradleUserHomeDir}/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/unzipped.com.jetbrains.plugins/PythonCore-${pythonCoreVersion}/python-ce/lib")
+    }
+}
+
+// See https://github.com/JetBrains/gradle-intellij-plugin/
+intellij {
+    version '2019.1.2'
+    plugins "PythonCore:${pythonCoreVersion}"
+    updateSinceUntilBuild false
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compileOnly name: 'python-ce'
+}

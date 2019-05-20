@@ -1,0 +1,64 @@
+<!--
+  ~ Copyright (C) 2017 Nokia
+  -->
+
+<idea-plugin>
+    <id>com.github.nokia.pyvenv</id>
+    <name>PyVenv Manage</name>
+    <version>1.1</version>
+    <vendor url="https://github.com/nokia">Nokia</vendor>
+
+    <description><![CDATA[
+<h1>PyVenvManage</h1>
+
+<h2>Introduction</h2>
+
+<em>PyVenvManage<em> is a plugin for managing the Python interpreter of Pycharm Projects.
+<br/>
+
+It is a general issue that Python projects may have several interpreters in different
+virtual environments for the various versions of the language. Managing these venvs
+is easily done with `tox`, but configuring the project in Pycharm is painful.
+<br/>
+
+With PyVenvManage the selection and setup of the venv is significantly simpler without dialog boxes.
+<br/>
+
+<h2>Features</h2>
+<ul>
+  <li>Popup menu item to set the project interpreter</li>
+  <li>Icon for virtual environments in the project view</li>
+</ul>]]></description>
+
+    <idea-version since-build="145.0"/>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+             on how to target different products -->
+    <depends optional="true">PythonCore</depends>
+    <depends optional="true">com.intellij.modules.python</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <iconProvider implementation="com.github.nokia.VenvIconProvider" />
+        <iconLayerProvider implementation="com.github.nokia.VenvIconProvider" />
+    </extensions>
+
+    <actions>
+        <action
+                id="VenvConfigPlugin.com.github.nokia.ConfigureProjectPythonVenv"
+                class="com.github.nokia.ConfigureProjectPythonVenv"
+                text="Set project venv"
+                description="Configures this directory to be the venv for the project"
+                icon="PyVenvManageIcons.CONFIGURE_VENV">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+        </action>
+        <action
+                id="VenvConfigPlugin.com.github.nokia.ConfigureModulePythonVenv"
+                class="com.github.nokia.ConfigureModulePythonVenv"
+                text="Set module venv for %s"
+                description="Configures this directory to be the venv for the project"
+                icon="PyVenvManageIcons.CONFIGURE_VENV">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+        </action>
+    </actions>
+
+</idea-plugin>
