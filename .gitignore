@@ -25,3 +25,11 @@ hs_err_pid*
 out
 
 .gradle
+
+build
+bin
+
+.classpath
+.project
+.settings/
+.vscode/
