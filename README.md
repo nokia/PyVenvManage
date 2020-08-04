@@ -25,3 +25,8 @@ The official plugin page is at https://plugins.jetbrains.com/plugin/10085-pyvenv
 ## Usage
 
 ![usage video](anim.gif?raw=true)
+
+
+## License
+
+This project is licensed under the BSD-3-Clause license - see the [LICENSE](https://github.com/nokia/PyVenvManage/blob/master/LICENSE).
