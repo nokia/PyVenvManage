@@ -14,7 +14,7 @@ import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.openapi.ui.MessageType;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.jetbrains.python.configuration.PyConfigurableInterpreterList;
-import com.jetbrains.python.sdk.PythonSdkType;
+import com.jetbrains.python.sdk.PythonSdkUtil;
 
 import java.util.Collection;
 
@@ -37,7 +37,7 @@ public abstract class ConfigurePythonVenv extends AnAction {
             return;
         }
 
-        final String pythonExecutable = PythonSdkType.getPythonExecutable(file.getPath());
+        final String pythonExecutable = PythonSdkUtil.getPythonExecutable(file.getPath());
         if (pythonExecutable != null) {
             setInterpreter(project, file, pythonExecutable);
         }
@@ -74,7 +74,7 @@ public abstract class ConfigurePythonVenv extends AnAction {
 
         if (file.isDirectory()) {
 
-            if (PythonSdkType.getPythonExecutable(file.getPath()) != null) {
+            if (PythonSdkUtil.getPythonExecutable(file.getPath()) != null) {
                 e.getPresentation().setEnabledAndVisible(true);
                 return true;
             }

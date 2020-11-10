@@ -1,8 +1,8 @@
 # PyVenvManage
 
-
 ## Introduction
 
+<!-- Plugin description -->
 **PyVenvManage** is a plugin for managing the Python interpreter of Pycharm Projects.
 
 It is a general issue that Python projects may have several interpreters in different
@@ -15,6 +15,7 @@ With PyVenvManage the selection and setup of the venv is a few clicks without di
 
 - Popup menu item to set the project interpreter
 - Icon provider to indicate virtual environments in the project view
+<!-- Plugin description end -->
 
 ## Install from the Official PyCharm repository
 

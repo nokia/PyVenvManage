@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Nokia
+ * Copyright (C) 2020 Nokia
  */
 
 package icons;

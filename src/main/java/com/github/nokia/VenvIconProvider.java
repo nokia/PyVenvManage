@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Nokia
+ * Copyright (C) 2020 Nokia
  */
 
 package com.github.nokia;
@@ -9,12 +9,12 @@ import com.intellij.ide.IconProvider;
 import com.intellij.openapi.util.Iconable;
 import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.PsiElement;
-import com.jetbrains.python.sdk.PythonSdkType;
+import com.jetbrains.python.sdk.PythonSdkUtil;
 import icons.PythonIcons;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import javax.swing.Icon;
+import javax.swing.*;
 
 /**
  * Sets the icon of Virtual Environment directories in the project view.
@@ -25,7 +25,7 @@ public class VenvIconProvider extends IconProvider implements IconLayerProvider 
     public Icon getIcon(@NotNull PsiElement element, int flags) {
         if (element instanceof PsiDirectory) {
             final String venvRootPath = ((PsiDirectory) element).getVirtualFile().getPath();
-            if (PythonSdkType.getPythonExecutable(venvRootPath) != null) {
+            if (PythonSdkUtil.getPythonExecutable(venvRootPath) != null) {
                 return PythonIcons.Python.Virtualenv;
             };
         }
@@ -37,7 +37,7 @@ public class VenvIconProvider extends IconProvider implements IconLayerProvider 
     public Icon getLayerIcon(@NotNull Iconable element, boolean isLocked) {
         if (element instanceof PsiDirectory) {
             final String venvRootPath = ((PsiDirectory) element).getVirtualFile().getPath();
-            if (PythonSdkType.getPythonExecutable(venvRootPath) != null) {
+            if (PythonSdkUtil.getPythonExecutable(venvRootPath) != null) {
                 return PythonIcons.Python.Virtualenv;
             };
         }
