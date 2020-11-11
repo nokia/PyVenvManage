@@ -2,12 +2,9 @@
 
 # PyVenvManage Changelog
 
-## [Unreleased]
+## [1.3.0] - 2020-11-11
 ### Fixed
 - Removed the usage of the deprecated PythonSdkType.getPythonExecutable API
-
-### Changed
-- Changed minimum version compatibility to 203
 
 <!--
 ## [version]
