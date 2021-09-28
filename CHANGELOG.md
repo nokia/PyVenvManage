@@ -2,6 +2,12 @@
 
 # PyVenvManage Changelog
 
+## [1.3.3]
+### Fixed
+- [16] (https://github.com/nokia/PyVenvManage/pull/18) Upgrade gradle and support 2021.3
+### Thanks
+- I would like to express my gratitude towards @gaborbernat for his continued support of the plugin.
+
 ## [1.3.2] - 2021-06-08
 ### Fixed
 - [16](https://github.com/nokia/PyVenvManage/issues/16) PyCharm 2021.1.2
