@@ -2,6 +2,10 @@
 
 # PyVenvManage Changelog
 
+## [1.3.4]
+### Fixed
+- Fix support for 2021.3
+
 ## [1.3.3]
 ### Fixed
 - https://github.com/nokia/PyVenvManage/pull/18 Upgrade gradle and support 2021.3
