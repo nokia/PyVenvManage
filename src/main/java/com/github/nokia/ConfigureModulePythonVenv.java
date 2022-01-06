@@ -10,6 +10,7 @@ import com.intellij.openapi.roots.ModuleRootModificationUtil;
 import com.intellij.openapi.roots.ProjectFileIndex;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.jetbrains.python.sdk.PythonSdkType;
+import org.jetbrains.annotations.NotNull;
 
 import java.text.MessageFormat;
 
@@ -34,7 +35,7 @@ public class ConfigureModulePythonVenv extends ConfigurePythonVenv {
     }
 
     @Override
-    public void update(AnActionEvent e) {
+    public void update(@NotNull AnActionEvent e) {
         if (isEventOnVenvDir(e)) {
             VirtualFile file = e.getData(CommonDataKeys.VIRTUAL_FILE);
             Project project = e.getProject();
