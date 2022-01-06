@@ -16,6 +16,7 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.jetbrains.python.configuration.PyConfigurableInterpreterList;
 import com.jetbrains.python.sdk.PythonSdkUtil;
 
+import java.io.File;
 import java.util.Collection;
 
 /**
@@ -31,10 +32,14 @@ public abstract class ConfigurePythonVenv extends AnAction {
             return;
         }
 
-        final VirtualFile file = e.getData(CommonDataKeys.VIRTUAL_FILE);
+        VirtualFile file = e.getData(CommonDataKeys.VIRTUAL_FILE);
 
-        if (file == null || !file.isDirectory()) {
+        if (file == null) {
             return;
+        }
+
+        if (!file.isDirectory()) {
+            file = file.getParent();
         }
 
         final String pythonExecutable = PythonSdkUtil.getPythonExecutable(file.getPath());
@@ -72,12 +77,13 @@ public abstract class ConfigurePythonVenv extends AnAction {
             return false;
         }
 
-        if (file.isDirectory()) {
+        if (!file.isDirectory() && new File(file.getPath()).isFile()) {
+            return PythonSdkUtil.isVirtualEnv(file.getPath());
+        }
 
-            if (PythonSdkUtil.getPythonExecutable(file.getPath()) != null) {
-                e.getPresentation().setEnabledAndVisible(true);
-                return true;
-            }
+        if (PythonSdkUtil.getPythonExecutable(file.getPath()) != null) {
+            e.getPresentation().setEnabledAndVisible(true);
+            return true;
         }
 
         return false;
