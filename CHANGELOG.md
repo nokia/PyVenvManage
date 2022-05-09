@@ -2,6 +2,14 @@
 
 # PyVenvManage Changelog
 
+## [1.3.6]
+### Fixed
+- Add support for 2022.1
+
+## [1.3.5]
+### Feature
+- Add popup option to files in the venv dir
+
 ## [1.3.4]
 ### Fixed
 - Fix support for 2021.3
