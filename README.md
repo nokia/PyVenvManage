@@ -1,5 +1,8 @@
 # PyVenvManage
 
+NOTE: This project is moved to [pyvenvmanage/PyVenvManage](https://github.com/pyvenvmanage/PyVenvManage) and maintained
+there. PR-s and Issues opened here will be ignored.
+
 ## Introduction
 
 <!-- Plugin description -->
